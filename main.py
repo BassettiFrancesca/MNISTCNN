@@ -12,7 +12,7 @@ def mnist_cnn():
 
     finish = time.time()
 
-    print('Seconds passed : %f' % (finish - start))
+    print('Seconds passed: %f' % (finish - start))
 
 
 if __name__ == '__main__':
