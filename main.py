@@ -3,17 +3,20 @@ import training
 import time
 
 
-def mnist_cnn():
+def mnist_cnn(train, test):
 
     start = time.time()
 
-    training.train()
-    testing.test()
+    if train:
+        training.train()
+
+    if test:
+        testing.test()
 
     finish = time.time()
 
-    print('Seconds passed: %f' % (finish - start))
+    print('Seconds passed: %.3f' % (finish - start))
 
 
 if __name__ == '__main__':
-    mnist_cnn()
+    mnist_cnn(True, True)
