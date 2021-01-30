@@ -1,7 +1,9 @@
 import torch
 import torchvision
 import torchvision.transforms as transforms
-import cnn
+import cnn1
+import cnn2
+import cnn3
 import torch.optim as optim
 import torch.nn as nn
 
@@ -10,10 +12,13 @@ def train():
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+    #batch_size = 40
     batch_size = 4
+    #num_workers = 0
     num_workers = 2
     learning_rate = 0.001
     momentum = 0.9
+    #num_epochs = 8
     num_epochs = 2
 
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
@@ -21,7 +26,9 @@ def train():
     train_set = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
     train_loader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=num_workers)
 
-    net = cnn.Net().to(device)
+    net = cnn1.Net().to(device)
+    #net = cnn2.Net().to(device)
+    #net = cnn3.Net().to(device)
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=momentum)

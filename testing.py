@@ -1,7 +1,9 @@
 import torch
 import torchvision
 import torchvision.transforms as transforms
-import cnn
+import cnn1
+import cnn2
+import cnn3
 
 
 def test():
@@ -10,7 +12,9 @@ def test():
 
     classes = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
 
+    #batch_size = 40
     batch_size = 4
+    #num_workers = 0
     num_workers = 2
 
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
@@ -18,7 +22,9 @@ def test():
     test_set = torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
     test_loader = torch.utils.data.DataLoader(test_set, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
-    net = cnn.Net().to(device)
+    net = cnn1.Net().to(device)
+    #net = cnn2.Net().to(device)
+    #net = cnn3.Net().to(device)
     PATH = './mnist_net.pth'
     net.load_state_dict(torch.load(PATH))
 
